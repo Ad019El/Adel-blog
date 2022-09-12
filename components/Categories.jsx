@@ -5,11 +5,11 @@ import { getCategories } from '../services'
 const Categories = () => {
   const [categories, setCategories] = useState([]);
 
-  useEffect(()=>{
-    getCategories()
-      .then((result)=>setCategories(result))
-
-  }, [])
+  useEffect(() => {
+    getCategories().then((newCategories) => {
+      setCategories(newCategories);
+    });
+  }, []);
 
   return (
     <div className="bg-white shadow-lg rounded-lg p-8 pb-12 mb-8">
@@ -17,7 +17,7 @@ const Categories = () => {
 
       {categories.map((category)=>(
         
-        <Link href={`/${categories.slug}`} key={category.slug}>
+        <Link href={`/category/${category.slug}`} key={category.slug}>
           <span className='cursor-pointer block pb-3 mb-3'>{category.name}</span>
         </Link>
       )

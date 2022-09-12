@@ -7,10 +7,17 @@ import {
   Author,
   Comments,
   CommentsForm,
+  Loader,
 } from "../../components";
+import { useRouter } from "next/router";
 
 const PostDetails = (post) => {
   const posts = post.post;
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <Loader />;
+  }
 
   return (
     <>
